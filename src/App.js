@@ -1,13 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Palette from './components/Palette';
+import seedColors from './components/seedColors';
 
-function App() {
-  return (
-    <div className="App">
-      
-    </div>
-  );
+export class App extends Component {
+  render() {
+    return (
+      <div>
+        <Palette {...seedColors[4]} />
+      </div>
+    )
+  }
 }
 
-export default App;
+export default App
+
