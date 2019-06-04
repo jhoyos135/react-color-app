@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import Select from '@material-ui/core/Select';
 import Slider from 'rc-slider';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -19,9 +20,7 @@ export class Navbar extends Component {
         this.setState({format: e.target.value, open: true});
         this.props.handleChange(e.target.value);
     };
-    handleClick = (e) => {
 
-    }
     closeSnackbar = () => {
         this.setState({open: false})
     }
@@ -32,7 +31,7 @@ export class Navbar extends Component {
         return (
             <header className='Navbar'>
             <div className="logo">
-                <a href="/">React-Color-App</a>
+                <Link to="/">React-Color-App</Link>
             </div>
             <div className="slider-container">
                 <span>level: {level}</span>
