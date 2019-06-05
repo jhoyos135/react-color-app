@@ -25,7 +25,7 @@ export class Palette extends Component {
     render() {
         const {level, format} = this.state;
         const colorBoxes = this.props.palette.colors[level].map(color => {
-            return <ColorBox background={color[format]} name={color.name} key={color.id} />
+            return <ColorBox background={color[format]} name={color.name} key={color.id} colorId={color.id} paletteId={this.props.palette.id} showLink={true} />
         });
 
         return (
