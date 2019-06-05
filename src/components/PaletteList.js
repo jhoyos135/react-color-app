@@ -31,18 +31,24 @@ const styles = {
         gridTemplateColumns: 'repeat(3, 30%)',
         gridGap: '5%'
     }
-}
+};
 
 export class PaletteList extends Component {
     renderPalettes = () => {
         return this.props.palettes.map(palette => {
             return (
-                <Link to={`/palette/${palette.id}`}>
-                <MiniPalette {...palette} />
-                </Link>
+                <MiniPalette {...palette} 
+                handleClick={ () => this.goToPalette(palette.id) }
+                 />
             )
         })
+    };
+
+    goToPalette = (id) => {
+        this.props.history.push(`/palette/${id}`);
     }
+
+
     render() {
         return (
             <div className={this.props.classes.root}>
