@@ -11,9 +11,9 @@
 .rc-slider-handle:active,
 .rc-slider-handle:hover,
 .rc-slider-handle:focus {
-    background: green;
+    background: pink;
     outline: none;
-    border: 2px solid green;
+    border: 2px solid pink;
     box-shadow: none;
     width: 13px;
     height: 13px;
@@ -29,22 +29,27 @@
     align-items: center;
     justify-content: flex-start;
     height: 6vh;
+    background: #333;
+    color: white;
 }
 .logo {
     margin-right: 15px;
     padding: 0 13px;
     font-size: 22px;
-    background: #eceff1;
+    background: #333;
     height: 100%;
     display: flex;
     align-items: center;
 }
 .logo a {
     text-decoration: none;
-    color: black;
+    color: white;
 }
 
 .select-container {
     margin-left: auto;
     margin-right: 1rem;
+}
+.select-container > div {
+    color: white !important;
 }

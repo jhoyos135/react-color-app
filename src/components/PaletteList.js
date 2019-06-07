@@ -22,7 +22,8 @@ const styles = {
         display: 'flex',
         width: '100%',
         justifyContent: 'space-between',
-        color: 'white'
+        color: 'white',
+        background: '#333'
     },
     palettes: {
         boxSizing: 'border-box',

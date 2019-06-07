@@ -8,7 +8,8 @@
 }
 
 .Palette-footer {
-    background: white;
+    background: #333;
+    color: white;
     height: 5vh;
     display: flex;
     justify-content: flex-end;
