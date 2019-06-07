@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './ColorBox.css';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {Link} from 'react-router-dom';
+import './ColorBox.css';
 
 export class ColorBox extends Component {
 
