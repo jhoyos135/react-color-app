@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 export class PaletteList extends Component {
 	renderPalettes = () => {
 		return this.props.palettes.map((palette) => {
-			return <MiniPalette {...palette} handleClick={() => this.goToPalette(palette.id)} />;
+			return <MiniPalette {...palette} key={palette.id} handleClick={() => this.goToPalette(palette.id)} />;
 		});
 	};
 
