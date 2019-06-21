@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import Dialog from '@material-ui/core/Dialog';
@@ -13,7 +13,7 @@ import 'emoji-mart/css/emoji-mart.css'
 
 export class PaletteMetaForm extends Component {
     state = {
-        open: true,
+        stage: 'form',
         newPaletteName: ''
     };
 
@@ -29,26 +29,38 @@ export class PaletteMetaForm extends Component {
     handleClose = () => {
         this.setState({ open: false });
     };
+    showEmojiPicker = () => {
+      this.setState({
+        stage: 'emoji'
+      })
+    };
+    savePalette = (emoji) => {
+      const newPalette = {paletteName: this.state.newPaletteName, emoji: emoji.native};
+      this.props.handleSubmit(newPalette)
+    }
 
 render() {
     const { newPaletteName, open } = this.state;
     const {hideForm, handleSubmit} = this.props;
 
     return (
+      <Fragment>
+      <Dialog open={this.state.stage === 'emoji'} onClose={hideForm}>
+        <Picker onSelect={this.savePalette} title='pick an emoji' />
+      </Dialog>
         <Dialog
-          open={open}
+          open={this.state.stage === 'form'}
           onClose={hideForm}
           aria-labelledby='form-dialog-title'
         >
           <DialogTitle id='form-dialog-title'>Choose a Palette Name</DialogTitle>
           <ValidatorForm
-              onSubmit={() => handleSubmit(newPaletteName)}
+              onSubmit={this.showEmojiPicker}
             >
           <DialogContent>
             <DialogContentText>
               Please enter a name for your new palette, make sure is unique
             </DialogContentText>
-            {/* <Picker /> */}
 
               <TextValidator
                 label='Palette Name'
@@ -72,6 +84,7 @@ render() {
           </DialogActions>
           </ValidatorForm>
         </Dialog>
+      </Fragment>
     );
   }
 }
