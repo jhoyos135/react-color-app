@@ -77,7 +77,7 @@ export class PaletteList extends Component {
 										<MiniPalette 
 										{...palette} 
 										key={palette.id} 
-										handleClick={() => this.goToPalette(palette.id)} 
+										handleClick={this.goToPalette} 
 										//handleDelete={this.props.deletePalette} 
 										openDialog={this.openDialog}
 										id={palette.id} />
