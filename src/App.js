@@ -6,6 +6,9 @@ import PaletteList from './components/PaletteList';
 import SingleColorPalette from './components/SingleColorPalette';
 import NewPaletteForm from './components/NewPaletteForm';
 import { generatePalette } from './components/colorHelpers';
+import {TransitionGroup, CSSTransition} from 'react-transition-group'
+import Page from './components/Page';
+import './App.css'
 
 export class App extends Component {
 
@@ -38,18 +41,33 @@ export class App extends Component {
 
 	render() {
 		return (
-			<Switch>
+			<Route 
+				render={({location}) => (
+					<TransitionGroup>
+						<CSSTransition
+						key={location.key}
+						classNames='page'
+						timeout={500}
+						>
+					<Switch location={location}>
 				<Route 
 				exact 
 				path="/palette/new" 
-				render={(routeProps) => <NewPaletteForm savePalette={this.savePalette} {...routeProps} palettes={this.state.palettes}  />} />
-				<Route exact path="/" render={(routeProps) => <PaletteList palettes={this.state.palettes} {...routeProps} deletePalette={this.deletePalette} />} />
+				render={(routeProps) => (
+					<Page>
+						<NewPaletteForm savePalette={this.savePalette} {...routeProps} palettes={this.state.palettes}  /> </Page>
+				) } />
+				<Route exact path="/" render={(routeProps) => (
+					<Page>
+						<PaletteList palettes={this.state.palettes} {...routeProps} deletePalette={this.deletePalette} /> </Page>
+				)} />
 
 				<Route
 					exact
 					path="/palette/:id"
 					render={(routeProps) => (
-						<Palette palette={generatePalette(this.findPalette(routeProps.match.params.id))} />
+						<Page>
+							<Palette palette={generatePalette(this.findPalette(routeProps.match.params.id))} /> </Page>
 					)}
 				/>
 
@@ -57,13 +75,18 @@ export class App extends Component {
 					exact
 					path="/palette/:paletteId/:colorId"
 					render={(routeProps) => (
-						<SingleColorPalette
+						<Page>
+							<SingleColorPalette
 							colorId={routeProps.match.params.colorId}
 							palette={generatePalette(this.findPalette(routeProps.match.params.paletteId))}
-						/>
+						/></Page>
 					)}
 				/>
 			</Switch>
+						</CSSTransition>
+					</TransitionGroup>
+				)}
+				/>
 		);
 	}
 }
