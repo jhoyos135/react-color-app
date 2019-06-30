@@ -40,8 +40,8 @@ export class PaletteMetaForm extends Component {
     }
 
 render() {
-    const { newPaletteName, open } = this.state;
-    const {hideForm, handleSubmit} = this.props;
+    const { newPaletteName } = this.state;
+    const {hideForm} = this.props;
 
     return (
       <Fragment>

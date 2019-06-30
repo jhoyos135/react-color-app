@@ -9,7 +9,6 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import PaletteMetaForm from './PaletteMetaForm';
-import MenuIcon from '@material-ui/icons/Menu';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { ValidatorForm } from 'react-material-ui-form-validator';
 import styles from './styles/PaletteFormNavStyles'
@@ -46,7 +45,6 @@ class PaletteFormNav extends Component {
 
     render() {
         const {classes, open, handleSubmit, palettes} = this.props;
-        const {newPaletteName} = this.state;
         return (
             <div className={classes.root} >
                 <CssBaseline />

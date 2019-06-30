@@ -12,6 +12,7 @@ import { ValidatorForm } from 'react-material-ui-form-validator';
 import { arrayMove } from 'react-sortable-hoc';
 import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
+import seedColors from './seedColors'
 
 import styles from './styles/NewPaletteFormStyles'
 class NewPaletteForm extends Component {
@@ -22,7 +23,7 @@ class NewPaletteForm extends Component {
 
 	state = {
 		open: true,
-		colors: this.props.palettes[0].colors
+		colors: seedColors[0].colors
 		};
 
 	componentDidMount() {
@@ -77,8 +78,14 @@ class NewPaletteForm extends Component {
 	};
 	addRandomColor = () => {
 		const allColors = this.props.palettes.map(p => p.colors).flat();
-		let rand = Math.floor(Math.random() * allColors.length);
-		const randomColor = allColors[rand];
+		let rand;
+		let randomColor;
+		let colorIsDuplicate = true;
+		while(colorIsDuplicate) {
+			rand = Math.floor(Math.random() * allColors.length);
+			randomColor = allColors[rand];
+			colorIsDuplicate = this.state.colors.some(color => color.name === randomColor);
+		}
 		this.setState({colors: [...this.state.colors, randomColor]});
 
 	}
